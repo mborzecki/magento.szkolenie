@@ -26,12 +26,70 @@
 
 class Divante_Training_IndexController extends Mage_Core_Controller_Front_Action
 {
-    public function pointOneAction()
+    public function sqlOneAction()
     {
         /** @var array $productIds */
         $productIds = range(16, 166);
 
         Mage::helper('divante_training')->sqlQueriesInsideLoop($productIds);
 //        Mage::helper('divante_training')->productCollection($productIds);
+    }
+
+    public function sqlTwoAction()
+    {
+        /** @var array $products */
+        $products = $this->_getProductSkusArray();
+
+        $productSkus = array_keys($products);
+
+        /** @var Mage_Catalog_Model_Resource_Product_Collection $collection */
+        $collection = Mage::getResourceModel('catalog/product_collection')
+            ->addFieldToFilter('sku', array('in' => $productSkus))
+            ->addAttributeToSelect(array('name'));
+
+        foreach ($products as $prodSku => $prodName) {
+
+            /** @var Mage_Catalog_Model_Product $product */
+            $product = $collection->getItemByColumnValue('sku', $prodSku);
+
+            // ....
+        }
+
+//        $productId = 166;
+//
+//        /** @var Mage_Catalog_Model_Product $product */
+//        $product = $collection->getItemById($productId);
+    }
+
+    public function sqlThreeAction()
+    {
+        /** @var array $products */
+        $products = $this->_getProductSkusArray();
+
+        $productSkus = array_keys($products);
+
+        /** @var array $productIds */
+        $productIds = Mage::helper('divante_training')->getProductIdsBySkus($productSkus);
+
+        foreach ($products as $prodSku => $prodName) {
+
+            /** @var int $productId */
+            $productId = $productIds[$prodSku];
+            // ....
+        }
+    }
+
+    /**
+     * @return array
+     */
+    protected function _getProductSkusArray()
+    {
+        $products = array();
+
+        $products['HTC Touch Diamond'] = 'HTC Touch Diamond';
+        $products['mycomputer'] = 'My Computer';
+        $products['micronmouse5000'] = 'Microsoft Wireless Optical Mouse 5000';
+
+        return $products;
     }
 }

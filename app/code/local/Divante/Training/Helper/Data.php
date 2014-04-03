@@ -43,4 +43,23 @@ class Divante_Training_Helper_Data extends Mage_Core_Helper_Abstract
             echo $product->getName() . '<br>';
         }
     }
+
+    /**
+     * @param array $skus
+     * @return mixed
+     */
+    public function getProductIdsBySkus(array $skus)
+    {
+        /** @var Varien_Db_Adapter_Pdo_Mysql $adapter */
+        $adapter = Mage::getSingleton('core/resource')->getConnection('core_read');
+
+        /** @var Mage_Catalog_Model_Resource_Product_Collection $collection */
+        $collection = Mage::getModel('catalog/product')->getCollection();
+
+        /** @var string $select */
+        $select = $collection->addFieldToFilter('sku', array('in' => $skus))
+            ->getSelect()->reset(Zend_Db_Select::COLUMNS)->columns(array('sku','entity_id'))->assemble();
+
+        return $adapter->fetchPairs($select);
+    }
 }

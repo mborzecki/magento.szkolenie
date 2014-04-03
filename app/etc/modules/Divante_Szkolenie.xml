@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Divante_Szkolenie>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Divante_Szkolenie>
+    </modules>
+</config>
