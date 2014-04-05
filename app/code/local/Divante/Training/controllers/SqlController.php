@@ -24,9 +24,9 @@
  * @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
 
-class Divante_Training_IndexController extends Mage_Core_Controller_Front_Action
+class Divante_Training_SqlController extends Mage_Core_Controller_Front_Action
 {
-    public function sqlOneAction()
+    public function oneAction()
     {
         /** @var array $productIds */
         $productIds = range(16, 166);
@@ -35,7 +35,7 @@ class Divante_Training_IndexController extends Mage_Core_Controller_Front_Action
 //        Mage::helper('divante_training')->productCollection($productIds);
     }
 
-    public function sqlTwoAction()
+    public function twoAction()
     {
         /** @var array $products */
         $products = $this->_getProductSkusArray();
@@ -61,7 +61,7 @@ class Divante_Training_IndexController extends Mage_Core_Controller_Front_Action
 //        $product = $collection->getItemById($productId);
     }
 
-    public function sqlThreeAction()
+    public function threeAction()
     {
         /** @var array $products */
         $products = $this->_getProductSkusArray();
