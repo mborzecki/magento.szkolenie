@@ -45,12 +45,17 @@ class Divante_Training_ModelsController extends Mage_Core_Controller_Front_Actio
 
     public function twoAction()
     {
-        $collection->count();   // todo - dokonczyc
+        /** @var array $products */
+        $products = Mage::helper('divante_training')->getProductSkusArray();
 
-        count($collection);
+        $productSkus = array_keys($products);
 
+        /** @var Mage_Catalog_Model_Resource_Product_Collection $collection */
+        $collection = Mage::getResourceModel('catalog/product_collection')
+            ->addFieldToFilter('sku', array('in' => $productSkus));
 
-
+//        $collection->count();
+//        count($collection);
 
         $collection->getSize();
     }

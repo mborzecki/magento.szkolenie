@@ -38,7 +38,7 @@ class Divante_Training_SqlController extends Mage_Core_Controller_Front_Action
     public function twoAction()
     {
         /** @var array $products */
-        $products = $this->_getProductSkusArray();
+        $products = Mage::helper('divante_training')->getProductSkusArray();
 
         $productSkus = array_keys($products);
 
@@ -64,7 +64,7 @@ class Divante_Training_SqlController extends Mage_Core_Controller_Front_Action
     public function threeAction()
     {
         /** @var array $products */
-        $products = $this->_getProductSkusArray();
+        $products = Mage::helper('divante_training')->getProductSkusArray();
 
         $productSkus = array_keys($products);
 
@@ -77,19 +77,5 @@ class Divante_Training_SqlController extends Mage_Core_Controller_Front_Action
             $productId = $productIds[$prodSku];
             // ....
         }
-    }
-
-    /**
-     * @return array
-     */
-    protected function _getProductSkusArray()
-    {
-        $products = array();
-
-        $products['HTC Touch Diamond'] = 'HTC Touch Diamond';
-        $products['mycomputer'] = 'My Computer';
-        $products['micronmouse5000'] = 'Microsoft Wireless Optical Mouse 5000';
-
-        return $products;
     }
 }

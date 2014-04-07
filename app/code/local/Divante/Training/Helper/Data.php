@@ -62,4 +62,18 @@ class Divante_Training_Helper_Data extends Mage_Core_Helper_Abstract
 
         return $adapter->fetchPairs($select);
     }
+
+    /**
+     * @return array
+     */
+    public function getProductSkusArray()
+    {
+        $products = array();
+
+        $products['HTC Touch Diamond'] = 'HTC Touch Diamond';
+        $products['mycomputer'] = 'My Computer';
+        $products['micronmouse5000'] = 'Microsoft Wireless Optical Mouse 5000';
+
+        return $products;
+    }
 }
