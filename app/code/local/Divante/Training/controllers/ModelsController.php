@@ -54,10 +54,10 @@ class Divante_Training_ModelsController extends Mage_Core_Controller_Front_Actio
         $collection = Mage::getResourceModel('catalog/product_collection')
             ->addFieldToFilter('sku', array('in' => $productSkus));
 
-//        $collection->count();
+        $collection->count();
 //        count($collection);
 
-        $collection->getSize();
+//        $collection->getSize();
     }
 
 }
